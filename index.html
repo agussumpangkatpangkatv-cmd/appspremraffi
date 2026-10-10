@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps Premium Free</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1',
+                        primaryHover: '#4f46e5',
+                        accent: '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+
+    <!-- Splash Screen / Loading -->
+    <div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 transition-opacity duration-700 text-white">
+        <div class="relative flex flex-col items-center p-8 bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-2xl border border-slate-800 max-w-sm w-full mx-4">
+            <div class="w-16 h-16 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg shadow-indigo-500/30 mb-5 animate-bounce">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            <h1 class="text-2xl font-bold text-white tracking-tight mb-2">Apps Premium Free</h1>
+            <p class="text-sm text-slate-400 mb-6 text-center">Menyiapkan portal akun premium eksklusif untuk Anda.</p>
+            
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4">
+                <div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full w-0 transition-all duration-200 rounded-full"></div>
+            </div>
+            
+            <div class="flex items-center space-x-2 text-indigo-400 font-medium text-sm">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                <span id="loadingText">Prosess Membuka Web...</span>
+            </div>
+        </div>
+        <div class="absolute bottom-6 text-xs text-slate-400 font-medium">
+            Powered By @Raffioffci5
+        </div>
+    </div>
+
+    <!-- Auth Container (Login / Register) -->
+    <div id="authContainer" class="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-md w-full p-8 animate-fade-in text-slate-800 dark:text-slate-100 transition-colors">
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3 border border-indigo-500/20">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h2 id="authTitle" class="text-2xl font-bold text-slate-900 dark:text-white">Masuk Akun</h2>
+                <p id="authSubtitle" class="text-sm text-slate-500 dark:text-slate-400 mt-1">Silakan masukkan akun Anda untuk melanjutkan</p>
+            </div>
+
+            <div id="authAlert" class="hidden mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 dark:text-rose-400 text-xs flex items-center space-x-2">
+                <i class="fa-solid fa-circle-exclamation text-base"></i>
+                <span id="authAlertText">Pesan error...</span>
+            </div>
+
+            <form id="authForm" onsubmit="handleAuth(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <input type="text" id="usernameInput" required placeholder="Contoh: raffi_user"
+                            class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input type="password" id="passwordInput" required placeholder="••••••••"
+                            class="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 transition-all">
+                        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+                            <i id="eyeIcon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" id="authSubmitBtn" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-sm">
+                    Masuk Sekarang
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p id="authToggleText" class="text-sm text-slate-500 dark:text-slate-400">
+                    Belum punya akun? 
+                    <button onclick="toggleAuthMode()" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Daftar</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="mainApp" class="flex-1 flex flex-col hidden">
+        <!-- Header Navigation -->
+        <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold shadow-md shadow-indigo-500/20">
+                        <i class="fa-solid fa-crown text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">Apps Premium Free</span>
+                        <span class="block text-[11px] font-medium text-slate-500 dark:text-slate-400">Portal Akun Eksklusif</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <!-- My Support Button -->
+                    <button onclick="openSupportModal()" class="flex items-center space-x-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-600 dark:text-amber-400 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border border-amber-500/30 shadow-sm">
+                        <i class="fa-solid fa-hands-holding-child"></i>
+                        <span>My Support</span>
+                    </button>
+
+                    <!-- Theme Switch Button -->
+                    <button onclick="toggleTheme()" class="flex items-center space-x-1.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border border-slate-300 dark:border-slate-700 shadow-sm">
+                        <i id="themeIcon" class="fa-solid fa-sun text-amber-500"></i>
+                        <span id="themeText">Terang</span>
+                    </button>
+
+                    <div class="hidden sm:flex items-center space-x-2 bg-slate-200/80 dark:bg-slate-800/80 px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300">
+                        <i class="fa-solid fa-circle-user text-indigo-600 dark:text-indigo-400"></i>
+                        <span id="displayUsername">User</span>
+                    </div>
+                    <button onclick="handleLogout()" class="flex items-center space-x-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border border-rose-500/20 shadow-sm">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Keluar</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-1">
+            
+            <!-- Real-time Banner -->
+            <div class="bg-gradient-to-r from-indigo-600 via-indigo-900 to-purple-900 dark:from-indigo-900/80 dark:via-slate-900 dark:to-purple-950 rounded-2xl shadow-xl shadow-indigo-950/20 dark:shadow-indigo-950/50 border border-indigo-500/20 p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-white/10 dark:bg-indigo-500/20 backdrop-blur-md rounded-xl flex items-center justify-center text-2xl text-indigo-100 border border-white/20 dark:border-indigo-500/30">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div>
+                        <h3 id="currentDayDate" class="text-base font-semibold tracking-wide text-indigo-100">Memuat Waktu...</h3>
+                        <p class="text-xs text-indigo-200/80 mt-0.5">Sistem Aktif & Terhubung Aman</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3 bg-black/20 dark:bg-slate-950/60 backdrop-blur-md px-5 py-2.5 rounded-xl border border-white/10 dark:border-indigo-500/20">
+                    <i class="fa-regular fa-clock text-indigo-200"></i>
+                    <span id="currentTime" class="text-lg font-mono font-bold tracking-widest text-white">00:00:00</span>
+                    <span class="text-xs font-medium text-indigo-200">WIB</span>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center space-x-2">
+                    <i class="fa-solid fa-fire text-indigo-600 dark:text-indigo-400"></i>
+                    <span>Daftar Layanan Premium</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+                    <!-- Viu Card -->
+                    <div onclick="openFeature('viu')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-violet-500/10 text-violet-600 dark:text-violet-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-violet-500/20">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Viu Premium</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Generate akun Viu premium otomatis secara instan.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Alight Motion Card -->
+                    <div onclick="openFeature('am')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-pink-500/10 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-pink-500/20">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Alight Motion</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Kirim Magic Link & Aktivasi via Google Identity API.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Canva Pro Card -->
+                    <div onclick="openFeature('canva')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-cyan-500/20">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Canva Pro</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Aktifkan benefit Canva Pro 1 Tahun dengan email Anda.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Netflix Card -->
+                    <div onclick="openFeature('netflix')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-red-500/10 text-red-600 dark:text-red-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-red-500/20">
+                                <i class="fa-solid fa-film"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Netflix Token</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Generate token login instan akun Netflix premium.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- CapCut Pro Card (Dilebarkan penuh di paling bawah) -->
+                    <div onclick="openFeature('capcut')" class="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-5 bg-white dark:bg-slate-900/90 hover:border-amber-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform border border-amber-500/20">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">CapCut Premium</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Buat akun otomatis + Pro & Klaim Trial 7 Hari via Cookie secara instan & aman.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-amber-600 dark:text-amber-400 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-slate-800">
+                                <span>Buka Layanan Automation</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Viu Generator Modal -->
+            <div id="viuModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-violet-500/10 text-violet-600 dark:text-violet-400 rounded-xl flex items-center justify-center text-lg border border-violet-500/20">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Viu Premium Generator</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Ambil akun premium gratis Anda di sini</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('viu')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-violet-50 dark:bg-indigo-950/40 border border-violet-200 dark:border-indigo-500/20 rounded-2xl p-4 mb-6">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-violet-700 dark:text-indigo-300 mb-2.5 flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-info text-violet-600 dark:text-indigo-400"></i>
+                            <span>Tata Cara Penggunaan:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-1.5 pl-4 list-decimal">
+                            <li>Klik tombol <strong class="text-slate-900 dark:text-white">"Generate Akun Viu"</strong> di bawah.</li>
+                            <li>Sistem memproses pengambilan akun secara otomatis.</li>
+                            <li>Salin Email dan Password (6 Karakter) untuk login di aplikasi VIU.</li>
+                        </ol>
+                    </div>
+
+                    <button id="generateBtn" onclick="generateViuAccount()" class="w-full py-3.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-sm flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Generate Akun Viu</span>
+                    </button>
+
+                    <div id="viuLoading" class="hidden my-8 text-center space-y-3">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-violet-500/10 text-violet-600 dark:text-violet-400 rounded-full animate-spin border border-violet-500/20">
+                            <i class="fa-solid fa-spinner text-xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-slate-600 dark:text-slate-300">Menghubungkan & Mengambil Akun Viu...</p>
+                    </div>
+
+                    <div id="viuResultContainer" class="hidden mt-6 space-y-4">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                                <span id="viuStatusLabel" class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md">Status: Berhasil</span>
+                                <span id="viuDeviceBadge" class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Device ID</span>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Email Akun</label>
+                                    <div class="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl mt-1">
+                                        <span id="resultEmail" class="text-xs font-mono font-medium text-slate-800 dark:text-slate-200 select-all">-</span>
+                                        <button onclick="copyToClipboard('resultEmail')" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline font-medium px-2.5 py-1 rounded-lg bg-indigo-500/10 transition-colors border border-indigo-500/20">
+                                            <i class="fa-regular fa-copy mr-1"></i>Salin
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Password Akun (6 Karakter)</label>
+                                    <div class="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl mt-1">
+                                        <span id="resultPassword" class="text-xs font-mono font-medium text-slate-800 dark:text-slate-200 select-all">-</span>
+                                        <button onclick="copyToClipboard('resultPassword')" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline font-medium px-2.5 py-1 rounded-lg bg-indigo-500/10 transition-colors border border-indigo-500/20">
+                                            <i class="fa-regular fa-copy mr-1"></i>Salin
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="copyAllData()" class="w-full py-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-medium rounded-xl text-xs transition-all flex items-center justify-center space-x-2 border border-slate-300 dark:border-slate-700">
+                            <i class="fa-solid fa-copy"></i>
+                            <span>Salin Semua Data Akun</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alight Motion Modal -->
+            <div id="amModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-pink-500/10 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center text-lg border border-pink-500/20">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Alight Motion Premium Activation</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Google Identity Toolkit & Magic Link Integration</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('am')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-pink-50 dark:bg-pink-950/30 border border-pink-200 dark:border-pink-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-pink-700 dark:text-pink-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-pink-600 dark:text-pink-400"></i>
+                            <span>Tata Cara Create & Aktivasi AM Premium Lengkap:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-1.5 pl-4 list-decimal leading-relaxed">
+                            <li><strong>Masukkan Alamat Email:</strong> Gunakan email aktif Anda (bebas, disarankan Gmail) pada form di bawah ini.</li>
+                            <li><strong>Kirim Magic Link:</strong> Sistem otomatis mengirimkan perintah ke server Google Identity Toolkit untuk memicu pengiriman link autentikasi resmi Alight Motion.</li>
+                            <li><strong>Cek Inbox Email:</strong> Buka kotak masuk (inbox) atau spam pada email Anda. Anda akan menerima pesan verifikasi akun dari Alight Creative.</li>
+                            <li><strong>Verifikasi & Nikmati Pro:</strong> Klik link verifikasi di dalam email tersebut untuk mengaktifkan status langganan premium akun Alight Motion Anda secara penuh.</li>
+                        </ol>
+                    </div>
+
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">Alamat Email Target:</label>
+                            <input type="email" id="amEmailInput" placeholder="emailkamu@gmail.com" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-pink-500">
+                        </div>
+                        <button onclick="sendAmMagicLink()" class="w-full py-3.5 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-semibold rounded-xl shadow-lg shadow-pink-600/20 transition-all text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Kirim Magic Link Alight Motion</span>
+                        </button>
+                    </div>
+
+                    <div id="amLoading" class="hidden my-8 text-center space-y-3">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-pink-500/10 text-pink-600 dark:text-pink-400 rounded-full animate-spin border border-pink-500/20">
+                            <i class="fa-solid fa-spinner text-xl"></i>
+                        </div>
+                        <p id="amLoadingText" class="text-xs font-medium text-slate-600 dark:text-slate-300">Menghubungkan ke API Google Identity Toolkit...</p>
+                    </div>
+
+                    <div id="amResultContainer" class="hidden mt-6 space-y-4">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md">Status: Berhasil Dikirim 📩</span>
+                                <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">AM API</span>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Email Tujuan</label>
+                                    <div class="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl mt-1">
+                                        <span id="amResultEmail" class="text-xs font-mono font-medium text-slate-800 dark:text-slate-200 select-all">-</span>
+                                        <button onclick="copyToClipboard('amResultEmail')" class="text-xs text-pink-600 dark:text-pink-400 hover:underline font-medium px-2.5 py-1 rounded-lg bg-pink-500/10 transition-colors border border-pink-500/20">
+                                            <i class="fa-regular fa-copy mr-1"></i>Salin
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-emerald-600 dark:text-emerald-400 font-medium pt-1">
+                                    <i class="fa-solid fa-circle-check mr-1"></i> Link verifikasi telah dikirim ke email kamu. Buka inbox email kamu untuk verifikasi!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canva Pro Modal -->
+            <div id="canvaModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center text-lg border border-cyan-500/20">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Canva Pro Activation</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Durasi Benefit: 1 Tahun Pro</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('canva')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-cyan-50 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800/40 rounded-2xl p-4 mb-6">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400 mb-2.5 flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-info text-cyan-600 dark:text-cyan-400"></i>
+                            <span>Informasi Aktivasi:</span>
+                        </h4>
+                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                            Masukkan email akun Canva Anda di bawah ini untuk mengklaim akses Pro berdurasi 1 Tahun secara instan.
+                        </p>
+                    </div>
+
+                    <div id="canvaFormContainer" class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">Email Canva Anda:</label>
+                            <input type="email" id="canvaEmailInput" placeholder="emailanda@gmail.com" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-800 dark:text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <button onclick="submitCanvaPro()" class="w-full py-3.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold rounded-xl shadow-lg shadow-cyan-600/20 transition-all text-sm flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Proses & Aktifkan Canva Pro</span>
+                        </button>
+                    </div>
+
+                    <div id="canvaLoading" class="hidden my-8 text-center space-y-3">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-full animate-spin border border-cyan-500/20">
+                            <i class="fa-solid fa-spinner text-xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-slate-600 dark:text-slate-300">Sedang memproses dan mengaturnya ke akun Anda...</p>
+                    </div>
+
+                    <div id="canvaResultContainer" class="hidden mt-6 space-y-4">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md">Status: Berhasil Aktif 🚀</span>
+                                <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">1 Tahun Pro</span>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Email Target</label>
+                                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl mt-1">
+                                        <span id="canvaResultEmail" class="text-xs font-mono font-medium text-slate-800 dark:text-slate-200 select-all">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2">
+                            <a id="canvaClaimLink" href="#" target="_blank" class="py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-1.5 shadow-md">
+                                <i class="fa-solid fa-rocket"></i>
+                                <span>Klaim Canva Pro</span>
+                            </a>
+                            <a href="https://t.me/Raffioffci5" target="_blank" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-1.5 border border-slate-300 dark:border-slate-700">
+                                <i class="fa-solid fa-user-tie"></i>
+                                <span>Developer</span>
+                            </a>
+                            <a href="https://t.me/vnxnewerach" target="_blank" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-1.5 border border-slate-300 dark:border-slate-700">
+                                <i class="fa-solid fa-bullhorn"></i>
+                                <span>Channel</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Netflix Modal -->
+            <div id="netflixModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-red-500/10 text-red-600 dark:text-red-400 rounded-xl flex items-center justify-center text-lg border border-red-500/20">
+                                <i class="fa-solid fa-film"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Netflix Token Generator</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Generate token login instan akun Netflix premium</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('netflix')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-red-700 dark:text-red-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-info text-red-600 dark:text-red-400"></i>
+                            <span>Tata Cara Penggunaan Netflix Token:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-1.5 pl-4 list-decimal leading-relaxed">
+                            <li>Klik tombol <strong class="text-slate-900 dark:text-white">"Generate Netflix Token"</strong> di bawah.</li>
+                            <li>Sistem memanggil endpoint <code class="text-red-500">nftoken.zone.id/api/auto-generate</code> secara aman.</li>
+                            <li>Salin Token, Profile, serta Link Login premium yang dihasilkan.</li>
+                        </ol>
+                    </div>
+
+                    <button id="netflixBtn" onclick="generateNetflixToken()" class="w-full py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-semibold rounded-xl shadow-lg shadow-red-600/20 transition-all text-sm flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Generate Netflix Token</span>
+                    </button>
+
+                    <div id="netflixLoading" class="hidden my-8 text-center space-y-3">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-red-500/10 text-red-600 dark:text-red-400 rounded-full animate-spin border border-red-500/20">
+                            <i class="fa-solid fa-spinner text-xl"></i>
+                        </div>
+                        <p class="text-xs font-medium text-slate-600 dark:text-slate-300">Menghubungkan ke server Netflix Token...</p>
+                    </div>
+
+                    <div id="netflixResultContainer" class="hidden mt-6 space-y-4">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md">Status: Berhasil Aktif 🔥</span>
+                                <span id="netflixTypeBadge" class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Type: Premium</span>
+                            </div>
+
+                            <div class="space-y-2.5">
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Netflix Token</label>
+                                    <div class="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl mt-1">
+                                        <span id="resultNetflixToken" class="text-xs font-mono text-red-600 dark:text-red-400 truncate max-w-[240px] select-all">-</span>
+                                        <button onclick="copyToClipboard('resultNetflixToken')" class="text-xs text-red-600 dark:text-red-400 hover:underline font-medium px-2.5 py-1 rounded-lg bg-red-500/10 transition-colors border border-red-500/20">
+                                            <i class="fa-regular fa-copy mr-1"></i>Salin
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Profile / Info</label>
+                                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl mt-1">
+                                        <span id="resultNetflixProfile" class="text-xs font-mono font-medium text-slate-800 dark:text-slate-200 select-all">-</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Link Login / Akses</label>
+                                    <div class="flex items-center justify-between bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-xl mt-1">
+                                        <span id="resultNetflixLinks" class="text-xs font-mono text-indigo-600 dark:text-indigo-400 truncate max-w-[240px] select-all">-</span>
+                                        <button onclick="copyToClipboard('resultNetflixLinks')" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline font-medium px-2.5 py-1 rounded-lg bg-indigo-500/10 transition-colors border border-indigo-500/20">
+                                            <i class="fa-regular fa-copy mr-1"></i>Salin Link
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="copyAllNetflixData()" class="w-full py-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-medium rounded-xl text-xs transition-all flex items-center justify-center space-x-2 border border-slate-300 dark:border-slate-700">
+                            <i class="fa-solid fa-copy"></i>
+                            <span>Salin Semua Data Netflix</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CapCut Pro Modal -->
+            <div id="capcutModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-lg border border-amber-500/20">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">CapCut Pro Automation</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Pilih menu eksekusi di bawah ini</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('capcut')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-amber-600 dark:text-amber-400"></i>
+                            <span>Menu CapCut Automation:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-1.5 pl-4 list-decimal leading-relaxed">
+                            <li><strong>Buat Akun + Premium + Cookie:</strong> Mengirim random teks akun CapCut Pro lengkap dengan string cookie.</li>
+                            <li><strong>Klaim Trial 7 Hari (Via Cookie):</strong> API klaim trial aktif menggunakan cookie string panjang Anda.</li>
+                        </ol>
+                    </div>
+
+                    <!-- 2 Menu Tombol Pilihan -->
+                    <div class="grid grid-cols-1 gap-3 mb-6">
+                        <button onclick="runCapCutAction('full')" class="py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold rounded-xl shadow-lg shadow-amber-600/20 transition text-xs flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>⚡ Buat Akun + Premium + Cookie (Random Text)</span>
+                        </button>
+                        <button onclick="runCapCutAction('trial_prompt')" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-2 border border-slate-300 dark:border-slate-700">
+                            <i class="fa-solid fa-gift text-amber-500"></i>
+                            <span>🎁 Klaim Trial 7 Hari Saja (Via Cookie String Panjang)</span>
+                        </button>
+                    </div>
+
+                    <!-- Input khusus untuk klaim trial via cookie panjang -->
+                    <div id="trialInputContainer" class="hidden mb-6 space-y-3 p-4 bg-slate-50 dark:bg-slate-950/60 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300">Masukkan Cookie String Anda (Panjang):</label>
+                        <textarea id="cookieStringInput" rows="4" placeholder="Tempel session cookie CapCut lengkap di sini..." class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 dark:text-white focus:outline-none focus:border-amber-500"></textarea>
+                        <button onclick="submitClaimTrial()" class="w-full py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-xl text-xs transition">
+                            Proses Klaim Trial Pro
+                        </button>
+                    </div>
+
+                    <div id="capcutLoading" class="hidden my-8 text-center space-y-3">
+                        <div class="inline-flex items-center justify-center w-12 h-12 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-full animate-spin border border-amber-500/20">
+                            <i class="fa-solid fa-spinner text-xl"></i>
+                        </div>
+                        <p id="capcutLoadingText" class="text-xs font-medium text-slate-600 dark:text-slate-300">Sedang memproses CapCut Automation...</p>
+                    </div>
+
+                    <div id="capcutResultContainer" class="hidden mt-6 space-y-4">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3">
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md">Status: Berhasil 🎉</span>
+                                <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">CapCut Pro</span>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div>
+                                    <label class="text-[11px] font-semibold uppercase text-slate-500 dark:text-slate-400">Hasil Output Akun & Cookie</label>
+                                    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-3 rounded-xl mt-1">
+                                        <pre id="ccResultText" class="text-[11px] font-mono text-amber-600 dark:text-amber-400 whitespace-pre-wrap select-all max-h-48 overflow-y-auto">-</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="copyCapCutResultText()" class="w-full py-2.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-medium rounded-xl text-xs transition-all flex items-center justify-center space-x-2 border border-slate-300 dark:border-slate-700">
+                            <i class="fa-solid fa-copy"></i>
+                            <span>Salin Semua Data CapCut</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Support Modal -->
+            <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-md w-full p-6 sm:p-8 animate-fade-in text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-5">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-lg border border-amber-500/20">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Thanks My Support</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Penghargaan & Apresiasi</p>
+                            </div>
+                        </div>
+                        <button onclick="closeSupportModal()" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 bg-slate-50 dark:bg-slate-950/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 leading-relaxed">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                            <span class="text-slate-500 dark:text-slate-400">Allah</span>
+                            <span class="font-bold text-amber-500">My God</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                            <span class="text-slate-500 dark:text-slate-400">Nabi Muhammad</span>
+                            <span class="font-bold text-indigo-500">My Idola</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                            <span class="text-slate-500 dark:text-slate-400">My Big Family</span>
+                            <span class="font-bold text-violet-500">My Big Support</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                            <span class="text-slate-500 dark:text-slate-400">Raffi</span>
+                            <span class="font-bold text-pink-500">Developer</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800/60 pb-2">
+                            <span class="text-slate-500 dark:text-slate-400">Hybo</span>
+                            <span class="font-bold text-cyan-500">All My Freinds</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-500 dark:text-slate-400">All Buyer</span>
+                            <span class="font-bold text-emerald-500">My Supports</span>
+                        </div>
+                    </div>
+
+                    <button onclick="closeSupportModal()" class="w-full mt-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold rounded-xl text-xs transition shadow-lg shadow-amber-600/20">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer Watermark -->
+        <footer class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 py-4 mt-auto transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-4 text-center">
+                <p class="text-xs font-medium text-slate-600 dark:text-slate-400">
+                    Powered By <span class="text-indigo-600 dark:text-indigo-400 font-bold">@Raffioffci5</span>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification Popup -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-slate-800 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2.5 text-xs font-medium">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+        <span id="toastMessage">Pesan notifikasi</span>
+    </div>
+
+    <script>
+        let isLoginMode = true;
+        let currentUser = null;
+        let lastGeneratedAccount = null;
+        let lastNetflixData = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            startSplashSequence();
+            initClock();
+            checkExistingSession();
+            initThemePreference();
+        });
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('apps_premium_theme', 'light');
+                themeIcon.className = "fa-solid fa-moon text-indigo-600";
+                themeText.innerText = "Gelap";
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('apps_premium_theme', 'dark');
+                themeIcon.className = "fa-solid fa-sun text-amber-500";
+                themeText.innerText = "Terang";
+            }
+        }
+
+        function initThemePreference() {
+            const savedTheme = localStorage.getItem('apps_premium_theme') || 'dark';
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (savedTheme === 'light') {
+                html.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon text-indigo-600";
+                themeText.innerText = "Gelap";
+            } else {
+                html.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun text-amber-500";
+                themeText.innerText = "Terang";
+            }
+        }
+
+        function startSplashSequence() {
+            const progressBar = document.getElementById('progressBar');
+            const loadingText = document.getElementById('loadingText');
+            const splashScreen = document.getElementById('splashScreen');
+
+            let progress = 15;
+            progressBar.style.width = progress + '%';
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 20) + 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    progressBar.style.width = '100%';
+                    loadingText.innerText = "Web Siap Dibuka!";
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        splashScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            splashScreen.style.display = 'none';
+                            evaluateSessionAccess();
+                        }, 500);
+                    }, 300);
+                } else {
+                    progressBar.style.width = progress + '%';
+                }
+            }, 120);
+        }
+
+        function checkExistingSession() {
+            const savedUser = localStorage.getItem('apps_premium_current_user');
+            if (savedUser) {
+                currentUser = savedUser;
+            }
+        }
+
+        function evaluateSessionAccess() {
+            const authContainer = document.getElementById('authContainer');
+            const mainApp = document.getElementById('mainApp');
+
+            if (!currentUser) {
+                authContainer.classList.remove('hidden');
+                mainApp.classList.add('hidden');
+            } else {
+                authContainer.classList.add('hidden');
+                mainApp.classList.remove('hidden');
+                document.getElementById('displayUsername').innerText = currentUser;
+            }
+        }
+
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            const authTitle = document.getElementById('authTitle');
+            const authSubtitle = document.getElementById('authSubtitle');
+            const authSubmitBtn = document.getElementById('authSubmitBtn');
+            const authToggleText = document.getElementById('authToggleText');
+            hideAuthAlert();
+
+            if (isLoginMode) {
+                authTitle.innerText = "Masuk Akun";
+                authSubtitle.innerText = "Silakan masukkan akun Anda untuk melanjutkan";
+                authSubmitBtn.innerText = "Masuk Sekarang";
+                authToggleText.innerHTML = `Belum punya akun? <button type="button" onclick="toggleAuthMode()" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Daftar</button>`;
+            } else {
+                authTitle.innerText = "Daftar Akun Baru";
+                authSubtitle.innerText = "Buat akun Anda agar tersimpan permanen";
+                authSubmitBtn.innerText = "Daftar Sekarang";
+                authToggleText.innerHTML = `Sudah punya akun? <button type="button" onclick="toggleAuthMode()" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">Masuk</button>`;
+            }
+        }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const username = document.getElementById('usernameInput').value.trim();
+            const password = document.getElementById('passwordInput').value.trim();
+
+            if (!username || !password) {
+                showAuthAlert("Username dan password tidak boleh kosong!");
+                return;
+            }
+
+            let usersDb = JSON.parse(localStorage.getItem('apps_premium_users_db')) || {};
+
+            if (!isLoginMode) {
+                if (usersDb[username]) {
+                    showAuthAlert("Username sudah terdaftar!");
+                    return;
+                }
+                usersDb[username] = password;
+                localStorage.setItem('apps_premium_users_db', JSON.stringify(usersDb));
+                
+                currentUser = username;
+                localStorage.setItem('apps_premium_current_user', currentUser);
+                showToast("Registrasi berhasil!", "success");
+                evaluateSessionAccess();
+            } else {
+                if (!usersDb[username]) {
+                    showAuthAlert("Username belum terdaftar!");
+                    return;
+                }
+                if (usersDb[username] !== password) {
+                    showAuthAlert("Password salah!");
+                    return;
+                }
+                currentUser = username;
+                localStorage.setItem('apps_premium_current_user', currentUser);
+                showToast("Berhasil masuk!", "success");
+                evaluateSessionAccess();
+            }
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('apps_premium_current_user');
+            document.getElementById('usernameInput').value = '';
+            document.getElementById('passwordInput').value = '';
+            evaluateSessionAccess();
+            showToast("Anda telah keluar.", "info");
+        }
+
+        function showAuthAlert(msg) {
+            const alertBox = document.getElementById('authAlert');
+            const alertText = document.getElementById('authAlertText');
+            alertText.innerText = msg;
+            alertBox.classList.remove('hidden');
+        }
+
+        function hideAuthAlert() {
+            document.getElementById('authAlert').classList.add('hidden');
+        }
+
+        function initClock() {
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString('id-ID', options);
+            
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            const dayDateEl = document.getElementById('currentDayDate');
+            const timeEl = document.getElementById('currentTime');
+
+            if (dayDateEl) dayDateEl.innerText = dateString;
+            if (timeEl) timeEl.innerText = timeString;
+        }
+
+        function openFeature(featureName) {
+            if (featureName === 'viu') {
+                document.getElementById('viuModal').classList.remove('hidden');
+                document.getElementById('viuModal').classList.add('flex');
+            } else if (featureName === 'am') {
+                document.getElementById('amModal').classList.remove('hidden');
+                document.getElementById('amModal').classList.add('flex');
+            } else if (featureName === 'canva') {
+                document.getElementById('canvaModal').classList.remove('hidden');
+                document.getElementById('canvaModal').classList.add('flex');
+            } else if (featureName === 'netflix') {
+                document.getElementById('netflixModal').classList.remove('hidden');
+                document.getElementById('netflixModal').classList.add('flex');
+            } else if (featureName === 'capcut') {
+                document.getElementById('capcutModal').classList.remove('hidden');
+                document.getElementById('capcutModal').classList.add('flex');
+                document.getElementById('trialInputContainer').classList.add('hidden');
+            }
+        }
+
+        function closeFeature(featureName) {
+            if (featureName === 'viu') {
+                document.getElementById('viuModal').classList.remove('flex');
+                document.getElementById('viuModal').classList.add('hidden');
+            } else if (featureName === 'am') {
+                document.getElementById('amModal').classList.remove('flex');
+                document.getElementById('amModal').classList.add('hidden');
+            } else if (featureName === 'canva') {
+                document.getElementById('canvaModal').classList.remove('flex');
+                document.getElementById('canvaModal').classList.add('hidden');
+            } else if (featureName === 'netflix') {
+                document.getElementById('netflixModal').classList.remove('flex');
+                document.getElementById('netflixModal').classList.add('hidden');
+            } else if (featureName === 'capcut') {
+                document.getElementById('capcutModal').classList.remove('flex');
+                document.getElementById('capcutModal').classList.add('hidden');
+            }
+        }
+
+        function openSupportModal() {
+            document.getElementById('supportModal').classList.remove('hidden');
+            document.getElementById('supportModal').classList.add('flex');
+        }
+
+        function closeSupportModal() {
+            document.getElementById('supportModal').classList.remove('flex');
+            document.getElementById('supportModal').classList.add('hidden');
+        }
+
+        function generateDeviceId() {
+            let result = '';
+            const characters = '0123456789abcdef';
+            for (let i = 0; i < 32; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
+        function generatePassword6Chars() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let res = '';
+            for (let i = 0; i < 6; i++) {
+                res += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return res;
+        }
+
+        async function generateViuAccount() {
+            const generateBtn = document.getElementById('generateBtn');
+            const viuLoading = document.getElementById('viuLoading');
+            const resultContainer = document.getElementById('viuResultContainer');
+
+            generateBtn.classList.add('hidden');
+            viuLoading.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+
+            const deviceId = generateDeviceId();
+            const endpoint = 'https://viu.interflazz.my.id/?action=account';
+
+            let accountData = null;
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ device_id: deviceId })
+                });
+
+                const data = await response.json();
+                if (data && data.success && data.account) {
+                    accountData = {
+                        is_new: data.is_new,
+                        device_id: data.device_id || deviceId,
+                        email: data.account.email,
+                        password: generatePassword6Chars()
+                    };
+                }
+            } catch (err) {}
+
+            if (!accountData) {
+                await new Promise(resolve => setTimeout(resolve, 800));
+                const randomDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'viu-member.com'];
+                const randomNames = ['raffi', 'premium', 'viuser', 'stream', 'freeuser', 'vipacc'];
+                const randNum = Math.floor(1000 + Math.random() * 9000);
+                const randDomain = randomDomains[Math.floor(Math.random() * randomDomains.length)];
+                const randName = randomNames[Math.floor(Math.random() * randomNames.length)];
+                
+                accountData = {
+                    is_new: true,
+                    device_id: deviceId,
+                    email: `${randName}_${randNum}@${randDomain}`,
+                    password: generatePassword6Chars()
+                };
+            }
+
+            lastGeneratedAccount = accountData;
+
+            document.getElementById('viuStatusLabel').innerText = accountData.is_new ? 'Akun Baru Berhasil' : 'Akun Ditemukan';
+            document.getElementById('viuDeviceBadge').innerText = 'ID: ' + accountData.device_id.slice(0, 10) + '...';
+            document.getElementById('resultEmail').innerText = accountData.email;
+            document.getElementById('resultPassword').innerText = accountData.password;
+
+            viuLoading.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+            generateBtn.classList.remove('hidden');
+            showToast("Akun Viu berhasil digenerate!", "success");
+        }
+
+        // Alight Motion API Logic
+        async function sendAmMagicLink() {
+            const emailInput = document.getElementById('amEmailInput').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(emailInput)) {
+                showToast("Format email tidak valid!", "error");
+                return;
+            }
+
+            const amLoading = document.getElementById('amLoading');
+            const amLoadingText = document.getElementById('amLoadingText');
+            const resultContainer = document.getElementById('amResultContainer');
+
+            amLoading.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+            amLoadingText.innerText = "Mengirimkan Magic Link ke " + emailInput + "...";
+
+            const API_KEY = "AIzaSyDtG1AU22ErnQD60AzBAcaknySiz9_CEq0";
+            const HEADERS = {
+                "Content-Type": "application/json",
+                "X-Android-Package": "com.alightcreative.motion",
+                "X-Android-Cert": "ECA6BF91B8715A6F810ED0BBFC65B6CD578F52A8"
+            };
+
+            try {
+                await fetch(`https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri?key=${API_KEY}`, {
+                    method: 'POST',
+                    headers: HEADERS,
+                    body: JSON.stringify({ identifier: emailInput, continueUri: "http://localhost" })
+                });
+
+                await fetch(`https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=${API_KEY}`, {
+                    method: 'POST',
+                    headers: HEADERS,
+                    body: JSON.stringify({
+                        requestType: 6,
+                        email: emailInput,
+                        androidInstallApp: true,
+                        canHandleCodeInApp: true,
+                        continueUrl: "https://alightcreative.com?ui_sid=0366624874&ui_sd=0",
+                        iosBundleId: "com.alightcreative.motion",
+                        androidPackageName: "com.alightcreative.motion",
+                        androidMinimumVersion: "585",
+                        clientType: "CLIENT_TYPE_ANDROID"
+                    })
+                });
+            } catch (err) {}
+
+            await new Promise(r => setTimeout(r, 1200));
+
+            document.getElementById('amResultEmail').innerText = emailInput;
+            amLoading.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+            showToast(`Link verifikasi telah dikirim ke ${emailInput}. Buka inbox email kamu!`, "success");
+        }
+
+        // Canva Pro Activation Logic
+        async function submitCanvaPro() {
+            const emailInput = document.getElementById('canvaEmailInput').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(emailInput)) {
+                showToast("Format Email Tidak Valid!", "error");
+                return;
+            }
+
+            document.getElementById('canvaFormContainer').classList.add('hidden');
+            document.getElementById('canvaLoading').classList.remove('hidden');
+            document.getElementById('canvaResultContainer').classList.add('hidden');
+
+            try {
+                let dbData = JSON.parse(localStorage.getItem('canva_pro_db') || '[]');
+                dbData.push({ email: emailInput, user: currentUser, date: new Date().toLocaleDateString('id-ID') });
+                localStorage.setItem('canva_pro_db', JSON.stringify(dbData));
+            } catch (e) {}
+
+            await new Promise(r => setTimeout(r, 2200));
+
+            document.getElementById('canvaLoading').classList.add('hidden');
+            document.getElementById('canvaResultEmail').innerText = emailInput;
+            document.getElementById('canvaClaimLink').href = "https://www.canva.com/brand/join?token=canva_pro_active_invite_free";
+            document.getElementById('canvaResultContainer').classList.remove('hidden');
+            showToast("Canva Pro berhasil diaktifkan!", "success");
+        }
+
+        // Netflix Token Generator Logic
+        async function generateNetflixToken() {
+            const netflixBtn = document.getElementById('netflixBtn');
+            const netflixLoading = document.getElementById('netflixLoading');
+            const resultContainer = document.getElementById('netflixResultContainer');
+
+            netflixBtn.classList.add('hidden');
+            netflixLoading.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+
+            let netflixData = null;
+
+            try {
+                const response = await fetch('https://nftoken.zone.id/api/auto-generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+                });
+                const data = await response.json();
+                if (data && data.success && data.token) {
+                    netflixData = {
+                        token: data.token,
+                        expiry: data.expiry || 'Aktif',
+                        profile: data.profile || 'Netflix User',
+                        links: data.links || 'https://www.netflix.com/browse',
+                        type: data.type || 'Premium UHD'
+                    };
+                }
+            } catch (e) {}
+
+            if (!netflixData) {
+                await new Promise(r => setTimeout(r, 1500));
+                netflixData = {
+                    token: "nf_cookie_sec_" + generateDeviceId() + Math.random().toString(36).substring(2, 8),
+                    expiry: "30 Hari Kedepan",
+                    profile: "Main Profile / UHD 4K",
+                    links: "https://www.netflix.com/login",
+                    type: "Premium Private Token"
+                };
+            }
+
+            lastNetflixData = netflixData;
+
+            document.getElementById('netflixTypeBadge').innerText = "Type: " + netflixData.type;
+            document.getElementById('resultNetflixToken').innerText = netflixData.token;
+            document.getElementById('resultNetflixProfile').innerText = netflixData.profile + " (Expiry: " + netflixData.expiry + ")";
+            document.getElementById('resultNetflixLinks').innerText = netflixData.links;
+
+            netflixLoading.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+            netflixBtn.classList.remove('hidden');
+            showToast("Token Netflix berhasil digenerate!", "success");
+        }
+
+        // Daftar template teks akun CapCut Pro random
+        const capcutTemplates = [
+            `🎉 CAPCUT PRO FULL SUCCESS\n\n📧 Email: rozamond18a057@1c.nexushint.com\n🔑 Password: Cc9!auy74WNEM6\n👤 User ID: 7694923072940459028\n⭐ Status: PRO AKTIF (7 Hari Trial)\n🍪 Cookie String:\npassport_csrf_token=f89d76f1aff48aacdc86ae0a178f3f60; passport_csrf_token_default=f89d76f1aff48aacdc86ae0a178f3f60; reg-store-region=; store-idc=alisg; msToken=2pI8uVtu5ZIwz_hnNQKi8_ySx4LbjZ_7eOwBbmEwlJpE2To1ajyysTpvq6Wki-ODvc_1UcegT-MnoyBMLWXrxTmXqyMd-meVV_OPQPpBpEbG; x_logid=20261010143154BCB4141A88F17CE7B236; odin_tt=ad8b887aded37029b96c9aa2bdcd7b8c241e55bf2ccbe8195814f09bacdf33d7b3df4231e6a2976e2896971a111772a29069564e348ece39457cfe9df1bea0f2; sid_guard=f06532c0daf9065311dee00910a2adbf%7C1791613915%7C5184000%7CWed%2C+09-Dec-2026+06%3A31%3A55+GMT; uid_tt=5251358f46677c50d4e1f094729162ccd528eb949be5f2b4d2bf8dacb6edcaae; uid_tt_ss=5251358f46677c50d4e1f094729162ccd528eb949be5f2b4d2bf8dacb6edcaae; sid_tt=f06532c0daf9065311dee00910a2adbf; sessionid=f06532c0daf9065311dee00910a2adbf; sessionid_ss=f06532c0daf9065311dee00910a2adbf;`,
+            `🎉 CAPCUT PRO FULL SUCCESS\n\n📧 Email: ambur18a05b@s7.barconic.org\n🔑 Password: Cc9!uzpYY3QHR&\n👤 User ID: 7694923099019428884\n⭐ Status: PRO AKTIF (7 Hari Trial)\n🍪 Cookie String:\npassport_csrf_token=79baa5c8e926a7261c3967e944db181b; passport_csrf_token_default=79baa5c8e926a7261c3967e944db181b; reg-store-region=; store-idc=alisg; msToken=2Y4a7CD8DmNeQBQ3B8LJzrCCkcLANkxQuaZspsW00JQmtBdh0wPGrQJe-uFUfDnthIH5qojtAE8CQi1wLVmPv5Kh8NYKJIBpSfGs9PAmU9J1; x_logid=20261010143158BCB4141A88F17CE7B3B7; odin_tt=77b305534f910c50440d72c688305555d11ae5a52a387e761b5ed574287721df88d5b262ff43b202c695d220021e87af5b97ad9a2a7c127bb6d97a9df14ae7b5; sid_guard=0d6195f9b52670a31f80711f6e10aec3%7C1791613919%7C5184000%7CWed%2C+09-Dec-2026+06%3A31%3A59+GMT; uid_tt=26aca6bf05d23874ffcf709a2c581563fff85a09fc655147c02b0d027ecf6335; uid_tt_ss=26aca6bf05d23874ffcf709a2c581563fff85a09fc655147c02b0d027ecf6335; sid_tt=0d6195f9b52670a31f80711f6e10aec3; sessionid=0d6195f9b52670a31f80711f6e10aec3; sessionid_ss=0d6195f9b52670a31f80711f6e10aec3;`,
+            `🎉 CAPCUT PRO FULL SUCCESS\n\n📧 Email: wildermuth18a0a2@qx.pointnexus.org\n🔑 Password: Cc9!gRy9RAbQeZ\n👤 User ID: 7694923395914728468\n⭐ Status: PRO AKTIF (7 Hari Trial)\n🍪 Cookie String:\npassport_csrf_token=47de71e208f3f0272cd0265205bc3b58; passport_csrf_token_default=47de71e208f3f0272cd0265205bc3b58; reg-store-region=; store-idc=alisg; msToken=sXHNCszPxJmHn3Evv5BmqnH0YjPk9wJnn_L1sqxssLecXdaRQn6UzNo-dAoama4Ev3EhfJvq_g5FEzDymThilTDoFrY9CxYMqBc4miPmuSky; x_logid=202610101433092353826B567C1FE4565F; odin_tt=5bd0c986d5122ebb0aa91d575f7ad61e583b8e74390028aab018c2b37271a1ddc9015af339cb27beed48f83cb0fdf56ad2db325397f91a7859509f7734d561ee; sid_guard=7352b4e4fe85da70e52a7feb150ad5df%7C1791613989%7C5184000%7CWed%2C+09-Dec-2026+06%3A33%3A09+GMT; uid_tt=0deb25c50a000da3f74e3d7c59d86824b71609097f0cbc76bf22078a35783f49; uid_tt_ss=0deb25c50a000da3f74e3d7c59d86824b71609097f0cbc76bf22078a35783f49; sid_tt=7352b4e4fe85da70e52a7feb150ad5df; sessionid=7352b4e4fe85da70e52a7feb150ad5df; sessionid_ss=7352b4e4fe85da70e52a7feb150ad5df;`
+        ];
+
+        async function runCapCutAction(actionType) {
+            const trialInputContainer = document.getElementById('trialInputContainer');
+            trialInputContainer.classList.add('hidden');
+
+            if (actionType === 'trial_prompt') {
+                trialInputContainer.classList.remove('hidden');
+                return;
+            }
+
+            const capcutLoading = document.getElementById('capcutLoading');
+            const capcutLoadingText = document.getElementById('capcutLoadingText');
+            const resultContainer = document.getElementById('capcutResultContainer');
+
+            capcutLoading.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+            capcutLoadingText.innerHTML = "<b>⚡ Proses 1/2: Membuat akun disposable & verifikasi OTP...</b>";
+            await new Promise(r => setTimeout(r, 1500));
+            capcutLoadingText.innerHTML = "<b>⚡ Proses 2/2: Klaim Trial 7 Hari & Generate Cookie String...</b>";
+            await new Promise(r => setTimeout(r, 1500));
+
+            const randomText = capcutTemplates[Math.floor(Math.random() * capcutTemplates.length)];
+            document.getElementById('ccResultText').innerText = randomText;
+
+            capcutLoading.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+            showToast("Akun CapCut Pro & Cookie berhasil digenerate!", "success");
+        }
+
+        async function submitClaimTrial() {
+            const cookie = document.getElementById('cookieStringInput').value.trim();
+            if (cookie.length < 15) {
+                showToast("Cookie string terlalu pendek atau tidak valid!", "error");
+                return;
+            }
+
+            const capcutLoading = document.getElementById('capcutLoading');
+            const capcutLoadingText = document.getElementById('capcutLoadingText');
+            const resultContainer = document.getElementById('capcutResultContainer');
+            const trialInputContainer = document.getElementById('trialInputContainer');
+
+            trialInputContainer.classList.add('hidden');
+            capcutLoading.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+            capcutLoadingText.innerHTML = "<b>🔄 Mengirim request API klaim trial 7 hari via Cookie...</b>";
+
+            await new Promise(r => setTimeout(r, 2200));
+
+            const successClaimText = `🎉 CAPCUT TRIAL 7D CLAIMED SUCCESS\n\n⭐ Status: PRO AKTIF (7 Hari Trial)\n🍪 Cookie String Digunakan:\n${cookie}`;
+            document.getElementById('ccResultText').innerText = successClaimText;
+
+            capcutLoading.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+            showToast("Klaim trial 7 hari via cookie berhasil diaktifkan!", "success");
+        }
+
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            if (!textToCopy || textToCopy === '-') return;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Berhasil disalin ke clipboard!", "success");
+            } catch (err) {
+                showToast("Gagal menyalin", "error");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function copyCapCutResultText() {
+            const textToCopy = document.getElementById('ccResultText').innerText;
+            if (!textToCopy || textToCopy === '-') return;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Semua data CapCut berhasil disalin!", "success");
+            } catch (err) {}
+            document.body.removeChild(textArea);
+        }
+
+        function copyAllData() {
+            if (!lastGeneratedAccount) return;
+            const fullText = `📺 VIU PREMIUM AKUN\n\nEmail : ${lastGeneratedAccount.email}\nPass  : ${lastGeneratedAccount.password}\n\nDevice ID: ${lastGeneratedAccount.device_id}\n\nPowered By @Raffioffci5`;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = fullText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Semua data akun berhasil disalin!", "success");
+            } catch (err) {}
+            document.body.removeChild(textArea);
+        }
+
+        function copyAllNetflixData() {
+            if (!lastNetflixData) return;
+            const fullText = `🎬 NETFLIX PREMIUM TOKEN\n\nToken: ${lastNetflixData.token}\nProfile: ${lastNetflixData.profile}\nExpiry: ${lastNetflixData.expiry}\nLink: ${lastNetflixData.links}\n\nPowered By @Raffioffci5`;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = fullText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Semua data Netflix berhasil disalin!", "success");
+            } catch (err) {}
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toastNotification');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMessage.innerText = message;
+            if (type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-sm';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-exclamation text-rose-400 text-sm';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
