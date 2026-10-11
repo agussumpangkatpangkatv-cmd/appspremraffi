@@ -213,12 +213,12 @@
                 </button>
             </div>
 
-            <!-- MENU 1: GENERATE PREM PRO (Viu s.d Shopee VIP) -->
+            <!-- MENU 1: GENERATE PREM PRO (Viu s.d Smartfren 50GB) -->
             <div id="sectionGenerate" class="space-y-4 animate-fade-in">
                 <div class="flex items-center justify-between">
                     <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                         <i class="fa-solid fa-fire text-indigo-600 dark:text-indigo-400"></i>
-                        <span>Generate Prem Pro (Viu - Shopee VIP)</span>
+                        <span>Generate Prem Pro (Viu - Smartfren 50GB)</span>
                     </h2>
                 </div>
 
@@ -327,6 +327,21 @@
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
+
+                    <!-- Smartfren 50GB Free Card -->
+                    <div onclick="openFeature('smartfren')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-rose-500/20">
+                                <i class="fa-solid fa-wifi"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Smartfren 50GB Free</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Masa aktif 1 tahun & kuota 50GB cukup tukar 1 poin saja.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -402,6 +417,71 @@
                 </div>
             </div>
 
+            <!-- MODAL SMARTFREN 50GB -->
+            <div id="smartfrenModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-xl flex items-center justify-center text-lg border border-rose-500/20">
+                                <i class="fa-solid fa-wifi"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Smartfren 50GB + Masa Aktif 1 Tahun</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Klaim Spesial Cukup Tukar 1 Poin Saja</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('smartfren')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Foto Smartfren Diperbesar & Bisa Diklik -->
+                    <div class="mb-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 flex flex-col items-center justify-center relative group">
+                        <a href="https://files.catbox.moe/5ynkpq.jpg" target="_blank" title="Klik untuk memperbesar foto" class="w-full cursor-zoom-in block relative">
+                            <img src="https://files.catbox.moe/5ynkpq.jpg" alt="Gemini Plus Tutorial" class="w-full max-h-[400px] object-contain rounded-xl shadow-lg transition-transform duration-300 group-hover:scale-102">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold space-x-2 backdrop-blur-[2px]">
+                                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                                <span>Klik untuk memperbesar gambar</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-rose-700 dark:text-rose-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-rose-600 dark:text-rose-400"></i>
+                            <span>Tata Cara Klaim Promo:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-2 pl-4 list-decimal leading-relaxed">
+                            <li>Klik tombol <strong class="text-slate-900 dark:text-white">"Buka Link Smartfren"</strong> di bawah ini.</li>
+                            <li>Pastikan aplikasi <strong class="text-slate-900 dark:text-white">MySmartfren</strong> terinstal di perangkat Anda.</li>
+                            <li>Tukar <strong class="text-rose-600 dark:text-rose-400 font-bold">1 Poin</strong> Anda di aplikasi untuk mendapatkan bonus masa aktif 1 tahun dan kuota 50GB Smartfren!</li>
+                        </ol>
+                    </div>
+
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">Link Klaim Smartfren:</label>
+                            <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-4 py-3 rounded-xl">
+                                <span id="smartfrenLinkText" class="text-xs font-mono font-medium text-rose-600 dark:text-rose-400 truncate max-w-[240px] select-all">https://mysf.onelink.me/nFIA/nexfjf3p</span>
+                                <button onclick="copyToClipboard('smartfrenLinkText')" class="text-xs text-rose-600 dark:text-rose-400 hover:underline font-medium px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                                    <i class="fa-regular fa-copy mr-1"></i>Salin Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <a href="https://mysf.onelink.me/nFIA/nexfjf3p?fbclid=IwdGRjcAU2PrhjbGNrBTY5hAEY3AFNANHY2xjawU0Az9leHRuA2FlbQIxMQBwZG9mAXNydGMGYXBwX2lkDDM1MDY4NTUzMTcyOAABHnYpMttmZ8B-tar8AWMJCOB0JqfmyTTyRIEoQ6VRRXNQuYxWVLUTKjrvBt4c_aem_iSGaCjufZlg4Y8mqqPB9Zg" target="_blank" class="py-3 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-md">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span>Buka Link Smartfren</span>
+                        </a>
+                        <button onclick="closeFeature('smartfren')" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- MODAL PROFIL DEVELOPER -->
             <div id="devModal" class="fixed inset-0 z-50 bg-slate-900/60 dark:bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-4">
                 <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-lg w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
@@ -428,7 +508,7 @@
                             <!-- Gelembung / Thought Bubble "This Is Developer" -->
                             <div class="absolute top-12 left-1/2 -translate-x-1/2 z-10 bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white px-5 py-2.5 rounded-full shadow-2xl border border-indigo-500/30 font-bold text-xs sm:text-sm tracking-wide flex items-center space-x-2 animate-bounce">
                                 <i class="fa-solid fa-comment-dots text-indigo-500"></i>
-                                <span>This Is A Developer</span>
+                                <span>This Is Developer</span>
                             </div>
 
                             <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-3 text-white text-[11px] font-medium backdrop-blur-[1px]">
@@ -1164,7 +1244,7 @@
                 </div>
             </div>
 
-            <!-- Octohide VPN Modal (Fitur 9 dengan Foto Diperbesar & Bisa Diklik) -->
+            <!-- Octohide VPN Modal -->
             <div id="octohideModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
                 <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-2xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
                     <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
@@ -1552,6 +1632,9 @@
             } else if (featureName === 'shopeevip') {
                 document.getElementById('shopeevipModal').classList.remove('hidden');
                 document.getElementById('shopeevipModal').classList.add('flex');
+            } else if (featureName === 'smartfren') {
+                document.getElementById('smartfrenModal').classList.remove('hidden');
+                document.getElementById('smartfrenModal').classList.add('flex');
             } else if (featureName === 'ghostmail') {
                 document.getElementById('ghostmailModal').classList.remove('hidden');
                 document.getElementById('ghostmailModal').classList.add('flex');
@@ -1589,6 +1672,9 @@
             } else if (featureName === 'shopeevip') {
                 document.getElementById('shopeevipModal').classList.remove('flex');
                 document.getElementById('shopeevipModal').classList.add('hidden');
+            } else if (featureName === 'smartfren') {
+                document.getElementById('smartfrenModal').classList.remove('flex');
+                document.getElementById('smartfrenModal').classList.add('hidden');
             } else if (featureName === 'ghostmail') {
                 document.getElementById('ghostmailModal').classList.remove('flex');
                 document.getElementById('ghostmailModal').classList.add('hidden');
