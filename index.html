@@ -195,14 +195,28 @@
                 </div>
             </div>
 
-            <!-- Features Grid -->
-            <div>
-                <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center space-x-2">
-                    <i class="fa-solid fa-fire text-indigo-600 dark:text-indigo-400"></i>
-                    <span>Daftar Layanan Premium</span>
-                </h2>
+            <!-- Tab Navigation Menu (Generate Prem Pro & Code Redem Pro) -->
+            <div class="flex items-center justify-center space-x-3 bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm max-w-md mx-auto">
+                <button onclick="switchTab('generate')" id="tabGenerateBtn" class="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Generate Prem Pro</span>
+                </button>
+                <button onclick="switchTab('redeem')" id="tabRedeemBtn" class="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>Code Redem Pro</span>
+                </button>
+            </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+            <!-- MENU 1: GENERATE PREM PRO (Viu s.d Shopee VIP) -->
+            <div id="sectionGenerate" class="space-y-4 animate-fade-in">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-fire text-indigo-600 dark:text-indigo-400"></i>
+                        <span>Generate Prem Pro (Viu - Shopee VIP)</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                     <!-- Viu Card -->
                     <div onclick="openFeature('viu')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
                         <div>
@@ -263,22 +277,120 @@
                         </div>
                     </div>
 
-                    <!-- CapCut Pro Card (Dilebarkan penuh di paling bawah) -->
-                    <div onclick="openFeature('capcut')" class="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-5 bg-white dark:bg-slate-900/90 hover:border-amber-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform border border-amber-500/20">
-                                    <i class="fa-solid fa-video"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-500 transition-colors">CapCut Premium</h3>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Buat akun otomatis + Pro & Klaim Trial 7 Hari via Cookie secara instan & aman.</p>
-                                </div>
+                    <!-- CapCut Pro Card -->
+                    <div onclick="openFeature('capcut')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-amber-500/20">
+                                <i class="fa-solid fa-video"></i>
                             </div>
-                            <div class="flex items-center space-x-2 text-xs font-semibold text-amber-600 dark:text-amber-400 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-slate-800">
-                                <span>Buka Layanan Automation</span>
-                                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">CapCut Premium</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Buat akun otomatis + Pro & Klaim Trial 7 Hari via Cookie.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Gemini Plus 12 Bulan Free Card -->
+                    <div onclick="openFeature('gemini')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-blue-500/20">
+                                <i class="fa-solid fa-sparkles"></i>
                             </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Gemini Plus 12 Bulan</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Klaim link promo resmi Google One / Gemini Plus Free 1 Tahun.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Shopee VIP 12 Bulan Card -->
+                    <div onclick="openFeature('shopeevip')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-orange-500/10 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-orange-500/20">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">ShopeeVIP 12 Bulan</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Klaim link VIP referral dan dapatkan hingga 12 Bulan gratis.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENU 2: CODE REDEM PRO (Ghost Email Pro s.d Octohide VPN) -->
+            <div id="sectionRedeem" class="space-y-4 animate-fade-in hidden">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-ticket text-indigo-600 dark:text-indigo-400"></i>
+                        <span>Code Redem Pro (Ghost Email - Octohide VPN)</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    <!-- Ghost Email Pro Card (Fitur 6) -->
+                    <div onclick="openFeature('ghostmail')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-emerald-500/20">
+                                <i class="fa-solid fa-envelope-circle-check"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Ghost Email Pro</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Aktivasi aplikasi Ghost Email Pro menggunakan kode promo khusus.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Blackbox AI Card (Fitur 7) -->
+                    <div onclick="openFeature('blackbox')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-blue-500/20">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Blackbox.ai</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Akses dan klaim benefit Blackbox AI dengan kode akses eksklusif.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- ChatGPT Guru Card (Fitur 8) -->
+                    <div onclick="openFeature('chatgptguru')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-teal-500/10 text-teal-600 dark:text-teal-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-teal-500/20">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">ChatGPT Guru</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Panduan registrasi akun menggunakan email custom domain erzi.me.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Octohide VPN Card (Fitur 9) -->
+                    <div onclick="openFeature('octohide')" class="bg-white dark:bg-slate-900/90 hover:border-indigo-500/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-lg shadow-slate-950/5 transition-all cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform border border-purple-500/20">
+                                <i class="fa-solid fa-shield-cat"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Octohide VPN</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Klaim VPN Free 3 Bulan dengan tukar token kode eksklusif.</p>
+                        </div>
+                        <div class="mt-5 flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-semibold text-indigo-600 dark:text-indigo-400">
+                            <span>Buka Layanan</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
                 </div>
@@ -636,7 +748,6 @@
                         </ol>
                     </div>
 
-                    <!-- 2 Menu Tombol Pilihan -->
                     <div class="grid grid-cols-1 gap-3 mb-6">
                         <button onclick="runCapCutAction('full')" class="py-3.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold rounded-xl shadow-lg shadow-amber-600/20 transition text-xs flex items-center justify-center space-x-2">
                             <i class="fa-solid fa-bolt"></i>
@@ -648,7 +759,6 @@
                         </button>
                     </div>
 
-                    <!-- Input khusus untuk klaim trial via cookie panjang -->
                     <div id="trialInputContainer" class="hidden mb-6 space-y-3 p-4 bg-slate-50 dark:bg-slate-950/60 rounded-2xl border border-slate-200 dark:border-slate-800">
                         <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300">Masukkan Cookie String Anda (Panjang):</label>
                         <textarea id="cookieStringInput" rows="4" placeholder="Tempel session cookie CapCut lengkap di sini..." class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 dark:text-white focus:outline-none focus:border-amber-500"></textarea>
@@ -686,6 +796,334 @@
                             <span>Salin Semua Data CapCut</span>
                         </button>
                     </div>
+                </div>
+            </div>
+
+            <!-- Gemini Plus 12 Bulan Modal (Dengan Foto Jelas & Bisa Diklik) -->
+            <div id="geminiModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-2xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-lg border border-blue-500/20">
+                                <i class="fa-solid fa-sparkles"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Gemini Plus 12 Bulan Free</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Pilih link klaim promo Google One / Gemini Plus</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('gemini')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-info text-blue-600 dark:text-blue-400"></i>
+                            <span>Daftar Link Promo Gemini Plus 12 Bulan:</span>
+                        </h4>
+                        <p class="text-xs text-slate-700 dark:text-slate-300">Klik salah satu link di bawah ini untuk langsung klaim penawaran gratis Google One / Gemini Plus:</p>
+                    </div>
+
+                    <div class="space-y-2.5 mb-6">
+                        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 p-2.5 rounded-xl">
+                            <span class="text-xs font-mono text-blue-600 dark:text-blue-400 truncate max-w-[280px]">https://one.google.com/offer/RSME4FY501DS6MW56HM6</span>
+                            <a href="https://one.google.com/offer/RSME4FY501DS6MW56HM6" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition shrink-0 ml-2">Klaim 1</a>
+                        </div>
+                        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 p-2.5 rounded-xl">
+                            <span class="text-xs font-mono text-blue-600 dark:text-blue-400 truncate max-w-[280px]">https://one.google.com/offer/PFEH0NNAS6NSURSR597Q</span>
+                            <a href="https://one.google.com/offer/PFEH0NNAS6NSURSR597Q" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition shrink-0 ml-2">Klaim 2</a>
+                        </div>
+                        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 p-2.5 rounded-xl">
+                            <span class="text-xs font-mono text-blue-600 dark:text-blue-400 truncate max-w-[280px]">https://one.google.com/offer/PFEXDPL8QG2767KNHSN0</span>
+                            <a href="https://one.google.com/offer/PFEXDPL8QG2767KNHSN0" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition shrink-0 ml-2">Klaim 3</a>
+                        </div>
+                        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 p-2.5 rounded-xl">
+                            <span class="text-xs font-mono text-blue-600 dark:text-blue-400 truncate max-w-[280px]">https://one.google.com/offer/PFXS6K14LEN2KKVYX7PU</span>
+                            <a href="https://one.google.com/offer/PFXS6K14LEN2KKVYX7PU" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition shrink-0 ml-2">Klaim 4</a>
+                        </div>
+                        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 p-2.5 rounded-xl">
+                            <span class="text-xs font-mono text-blue-600 dark:text-blue-400 truncate max-w-[280px]">https://one.google.com/offer/S2L4WV42P4EHEJ7AAH0X</span>
+                            <a href="https://one.google.com/offer/S2L4WV42P4EHEJ7AAH0X" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition shrink-0 ml-2">Klaim 5</a>
+                        </div>
+                    </div>
+
+                    <button onclick="closeFeature('gemini')" class="w-full py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+
+            <!-- Shopee VIP 12 Bulan Modal -->
+            <div id="shopeevipModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-orange-500/10 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center text-lg border border-orange-500/20">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">ShopeeVIP 12 Bulan Free</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Tata cara klaim dan referral VIP</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('shopeevip')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-orange-700 dark:text-orange-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-orange-600 dark:text-orange-400"></i>
+                            <span>Cara Klaim Shopee VIP:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-2 pl-4 list-decimal leading-relaxed">
+                            <li>1️⃣ Klik & klaim VIP melalui link: <a href="https://u.shopee.co.id/shopeevip?code=VIPR31cB6lKu6wtcxL90" target="_blank" class="text-orange-500 underline font-semibold">Link ShopeeVIP</a></li>
+                            <li>2️⃣ Masuk ShopeeVIP Referral → bagikan link Anda, max klaim 12 orang.</li>
+                            <li><strong class="text-slate-900 dark:text-white">- 1 klaim = 1 bulan FREE VIP</strong></li>
+                            <li>Setiap akun yang berhasil klaim, bisa ikut referral lagi untuk mendapatkan tambahan masa VIP (hingga total 12 bulan).</li>
+                        </ol>
+                    </div>
+
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">Link Shopee VIP:</label>
+                            <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-4 py-3 rounded-xl">
+                                <span id="shopeeCodeText" class="text-xs font-mono font-medium text-orange-600 dark:text-orange-400 truncate max-w-[240px] select-all">https://u.shopee.co.id/shopeevip?code=VIPR31cB6lKu6wtcxL90</span>
+                                <button onclick="copyToClipboard('shopeeCodeText')" class="text-xs text-orange-600 dark:text-orange-400 hover:underline font-medium px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20">
+                                    <i class="fa-regular fa-copy mr-1"></i>Salin Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <a href="https://u.shopee.co.id/shopeevip?code=VIPR31cB6lKu6wtcxL90" target="_blank" class="py-3 bg-orange-600 hover:bg-orange-500 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-md">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span>Buka Link Shopee VIP</span>
+                        </a>
+                        <button onclick="closeFeature('shopeevip')" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ghost Email Pro Modal (Fitur 6) -->
+            <div id="ghostmailModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-lg border border-emerald-500/20">
+                                <i class="fa-solid fa-envelope-circle-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Ghost Email Pro Activation</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Klaim Aktivasi Pro via Play Store</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('ghostmail')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Cara Klaim Ghost Email Pro:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-2 pl-4 list-decimal leading-relaxed">
+                            <li>Install Via Playstore: <a href="https://play.google.com/store/apps/details?id=com.rahul.ghostmail" target="_blank" class="text-emerald-500 underline font-semibold">Play Store Ghost Email</a></li>
+                            <li>Buka aplikasinya</li>
+                            <li>Klik titik tiga kanan atas <strong class="text-slate-900 dark:text-white">"settings > klik Activate PRO"</strong></li>
+                            <li>Masukkan kode: <strong class="text-emerald-500 font-mono">PROMO500</strong></li>
+                            <li>Done ✅️</li>
+                        </ol>
+                    </div>
+
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">Kode Promo:</label>
+                            <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-4 py-3 rounded-xl">
+                                <span id="ghostCodeText" class="text-sm font-mono font-bold text-emerald-600 dark:text-emerald-400 select-all">PROMO500</span>
+                                <button onclick="copyToClipboard('ghostCodeText')" class="text-xs text-emerald-600 dark:text-emerald-400 hover:underline font-medium px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                                    <i class="fa-regular fa-copy mr-1"></i>Salin Kode
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <a href="https://play.google.com/store/apps/details?id=com.rahul.ghostmail" target="_blank" class="py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-md">
+                            <i class="fa-brands fa-google-play"></i>
+                            <span>Buka Play Store</span>
+                        </a>
+                        <button onclick="closeFeature('ghostmail')" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blackbox AI Modal (Fitur 7) -->
+            <div id="blackboxModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-lg border border-blue-500/20">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Blackbox.ai Activation</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Akses & Kode Voucher AI</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('blackbox')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-blue-600 dark:text-blue-400"></i>
+                            <span>Tata Cara Penggunaan BLACKBOX.AI:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-2 pl-4 list-decimal leading-relaxed">
+                            <li>Kunjungi website resmi: <a href="https://www.blackbox.ai" target="_blank" class="text-blue-500 underline font-semibold">BLACKBOX.AI</a></li>
+                            <li>Buat akun atau masuk menggunakan akun Anda.</li>
+                            <li>Gunakan kode akses khusus di bawah ini pada menu pengaturan atau redeem plan untuk mengaktifkan benefit Anda.</li>
+                        </ol>
+                    </div>
+
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">Kode Voucher / Akses:</label>
+                            <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-4 py-3 rounded-xl">
+                                <span id="blackboxCodeText" class="text-sm font-mono font-bold text-blue-600 dark:text-blue-400 select-all">NAMISH26</span>
+                                <button onclick="copyToClipboard('blackboxCodeText')" class="text-xs text-blue-600 dark:text-blue-400 hover:underline font-medium px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                                    <i class="fa-regular fa-copy mr-1"></i>Salin Kode
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <a href="https://www.blackbox.ai" target="_blank" class="py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-md">
+                            <i class="fa-solid fa-globe"></i>
+                            <span>Kunjungi BLACKBOX.AI</span>
+                        </a>
+                        <button onclick="closeFeature('blackbox')" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ChatGPT Guru Modal (Fitur 8) -->
+            <div id="chatgptguruModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-teal-500/10 text-teal-600 dark:text-teal-400 rounded-xl flex items-center justify-center text-lg border border-teal-500/20">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">ChatGPT Guru Guide</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Panduan Registrasi Akun Custom Domain</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('chatgptguru')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-teal-700 dark:text-teal-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-teal-600 dark:text-teal-400"></i>
+                            <span>Tata Cara Pendaftaran ChatGPT Guru:</span>
+                        </h4>
+                        <ol class="text-xs text-slate-700 dark:text-slate-300 space-y-2 pl-4 list-decimal leading-relaxed">
+                            <li>Kunjungi <a href="https://em.bjedu.tech" target="_blank" class="text-teal-500 underline font-semibold">em.bjedu.tech</a></li>
+                            <li>Klik Buat akun email baru</li>
+                            <li>Pilih domain <strong class="text-slate-900 dark:text-white">erzi.me</strong></li>
+                            <li>Daftar akun baru di <a href="https://chatgpt.com" target="_blank" class="text-teal-500 underline font-semibold">chatgpt.com</a> menggunakan email tersebut.</li>
+                            <li>Done ✅️</li>
+                        </ol>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2">
+                        <a href="https://em.bjedu.tech" target="_blank" class="py-3 bg-teal-600 hover:bg-teal-500 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-1.5 shadow-md">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>Buka em.bjedu.tech</span>
+                        </a>
+                        <a href="https://chatgpt.com" target="_blank" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition flex items-center justify-center space-x-1.5 border border-slate-300 dark:border-slate-700">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span>Ke ChatGPT.com</span>
+                        </a>
+                        <button onclick="closeFeature('chatgptguru')" class="py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Octohide VPN Modal (Fitur 9 dengan Foto Diperbesar & Bisa Diklik) -->
+            <div id="octohideModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-2xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center text-lg border border-purple-500/20">
+                                <i class="fa-solid fa-shield-cat"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Octohide VPN Free 3 Bulan</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Tutorial & Token Penukaran</p>
+                            </div>
+                        </div>
+                        <button onclick="closeFeature('octohide')" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Foto Diperbesar & Bisa Diklik untuk Membuka Full Size -->
+                    <div class="mb-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 flex flex-col items-center justify-center relative group">
+                        <a href="https://files.catbox.moe/001gst.jpg" target="_blank" title="Klik untuk memperbesar foto" class="w-full cursor-zoom-in block relative">
+                            <img src="https://files.catbox.moe/001gst.jpg" alt="Octohide VPN Tutorial" class="w-full max-h-[450px] object-contain rounded-xl shadow-lg transition-transform duration-300 group-hover:scale-102">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold space-x-2 backdrop-blur-[2px]">
+                                <i class="fa-solid fa-magnifying-glass-plus text-base"></i>
+                                <span>Klik untuk memperbesar gambar</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800/40 rounded-2xl p-4 mb-6 space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-purple-700 dark:text-purple-400 flex items-center space-x-2">
+                            <i class="fa-solid fa-list-check text-purple-600 dark:text-purple-400"></i>
+                            <span>Tutorial - Octohide VPN Free 3 Bulan:</span>
+                        </h4>
+                        <ul class="text-xs text-slate-700 dark:text-slate-300 space-y-1.5 pl-4 list-disc leading-relaxed">
+                            <li><strong>Download</strong> aplikasi Octohide VPN.</li>
+                            <li><strong>Daftar Akun</strong> baru di dalam aplikasi.</li>
+                            <li>Masuk ke menu <strong>Pengaturan</strong>.</li>
+                            <li>Pilih opsi <strong>Tukar Token</strong> dan masukkan kode di bawah ini.</li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">Token / Code Redeem:</label>
+                            <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-4 py-3 rounded-xl">
+                                <span id="octoCodeText" class="text-sm font-mono font-bold text-purple-600 dark:text-purple-400 select-all">BLACFRID2025</span>
+                                <button onclick="copyToClipboard('octoCodeText')" class="text-xs text-purple-600 dark:text-purple-400 hover:underline font-medium px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20">
+                                    <i class="fa-regular fa-copy mr-1"></i>Salin Code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="closeFeature('octohide')" class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white font-semibold rounded-xl text-xs transition shadow-md shadow-purple-600/20">
+                        Tutup & Selesai
+                    </button>
                 </div>
             </div>
 
@@ -770,6 +1208,27 @@
             checkExistingSession();
             initThemePreference();
         });
+
+        function switchTab(tabName) {
+            const sectionGenerate = document.getElementById('sectionGenerate');
+            const sectionRedeem = document.getElementById('sectionRedeem');
+            const tabGenerateBtn = document.getElementById('tabGenerateBtn');
+            const tabRedeemBtn = document.getElementById('tabRedeemBtn');
+
+            if (tabName === 'generate') {
+                sectionGenerate.classList.remove('hidden');
+                sectionRedeem.classList.add('hidden');
+                
+                tabGenerateBtn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30 flex items-center justify-center space-x-2";
+                tabRedeemBtn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center space-x-2";
+            } else {
+                sectionGenerate.classList.add('hidden');
+                sectionRedeem.classList.remove('hidden');
+
+                tabRedeemBtn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md shadow-indigo-600/30 flex items-center justify-center space-x-2";
+                tabGenerateBtn.className = "flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center space-x-2";
+            }
+        }
 
         function toggleTheme() {
             const html = document.documentElement;
@@ -990,6 +1449,24 @@
                 document.getElementById('capcutModal').classList.remove('hidden');
                 document.getElementById('capcutModal').classList.add('flex');
                 document.getElementById('trialInputContainer').classList.add('hidden');
+            } else if (featureName === 'gemini') {
+                document.getElementById('geminiModal').classList.remove('hidden');
+                document.getElementById('geminiModal').classList.add('flex');
+            } else if (featureName === 'shopeevip') {
+                document.getElementById('shopeevipModal').classList.remove('hidden');
+                document.getElementById('shopeevipModal').classList.add('flex');
+            } else if (featureName === 'ghostmail') {
+                document.getElementById('ghostmailModal').classList.remove('hidden');
+                document.getElementById('ghostmailModal').classList.add('flex');
+            } else if (featureName === 'blackbox') {
+                document.getElementById('blackboxModal').classList.remove('hidden');
+                document.getElementById('blackboxModal').classList.add('flex');
+            } else if (featureName === 'chatgptguru') {
+                document.getElementById('chatgptguruModal').classList.remove('hidden');
+                document.getElementById('chatgptguruModal').classList.add('flex');
+            } else if (featureName === 'octohide') {
+                document.getElementById('octohideModal').classList.remove('hidden');
+                document.getElementById('octohideModal').classList.add('flex');
             }
         }
 
@@ -1009,6 +1486,24 @@
             } else if (featureName === 'capcut') {
                 document.getElementById('capcutModal').classList.remove('flex');
                 document.getElementById('capcutModal').classList.add('hidden');
+            } else if (featureName === 'gemini') {
+                document.getElementById('geminiModal').classList.remove('flex');
+                document.getElementById('geminiModal').classList.add('hidden');
+            } else if (featureName === 'shopeevip') {
+                document.getElementById('shopeevipModal').classList.remove('flex');
+                document.getElementById('shopeevipModal').classList.add('hidden');
+            } else if (featureName === 'ghostmail') {
+                document.getElementById('ghostmailModal').classList.remove('flex');
+                document.getElementById('ghostmailModal').classList.add('hidden');
+            } else if (featureName === 'blackbox') {
+                document.getElementById('blackboxModal').classList.remove('flex');
+                document.getElementById('blackboxModal').classList.add('hidden');
+            } else if (featureName === 'chatgptguru') {
+                document.getElementById('chatgptguruModal').classList.remove('flex');
+                document.getElementById('chatgptguruModal').classList.add('hidden');
+            } else if (featureName === 'octohide') {
+                document.getElementById('octohideModal').classList.remove('flex');
+                document.getElementById('octohideModal').classList.add('hidden');
             }
         }
 
@@ -1101,7 +1596,6 @@
             showToast("Akun Viu berhasil digenerate!", "success");
         }
 
-        // Alight Motion API Logic
         async function sendAmMagicLink() {
             const emailInput = document.getElementById('amEmailInput').value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1158,7 +1652,6 @@
             showToast(`Link verifikasi telah dikirim ke ${emailInput}. Buka inbox email kamu!`, "success");
         }
 
-        // Canva Pro Activation Logic
         async function submitCanvaPro() {
             const emailInput = document.getElementById('canvaEmailInput').value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1182,12 +1675,11 @@
 
             document.getElementById('canvaLoading').classList.add('hidden');
             document.getElementById('canvaResultEmail').innerText = emailInput;
-            document.getElementById('canvaClaimLink').href = "https://www.canva.com/brand/join?token=canva_pro_active_invite_free";
+            document.getElementById('canvaClaimLink').href = "https://www.canva.com/brand/join?token=-6AURU3NdMb4LRjt1Wxtjw&brandingVariant=edu&referrer=team-invite";
             document.getElementById('canvaResultContainer').classList.remove('hidden');
             showToast("Canva Pro berhasil diaktifkan!", "success");
         }
 
-        // Netflix Token Generator Logic
         async function generateNetflixToken() {
             const netflixBtn = document.getElementById('netflixBtn');
             const netflixLoading = document.getElementById('netflixLoading');
@@ -1240,7 +1732,6 @@
             showToast("Token Netflix berhasil digenerate!", "success");
         }
 
-        // Daftar template teks akun CapCut Pro random
         const capcutTemplates = [
             `🎉 CAPCUT PRO FULL SUCCESS\n\n📧 Email: rozamond18a057@1c.nexushint.com\n🔑 Password: Cc9!auy74WNEM6\n👤 User ID: 7694923072940459028\n⭐ Status: PRO AKTIF (7 Hari Trial)\n🍪 Cookie String:\npassport_csrf_token=f89d76f1aff48aacdc86ae0a178f3f60; passport_csrf_token_default=f89d76f1aff48aacdc86ae0a178f3f60; reg-store-region=; store-idc=alisg; msToken=2pI8uVtu5ZIwz_hnNQKi8_ySx4LbjZ_7eOwBbmEwlJpE2To1ajyysTpvq6Wki-ODvc_1UcegT-MnoyBMLWXrxTmXqyMd-meVV_OPQPpBpEbG; x_logid=20261010143154BCB4141A88F17CE7B236; odin_tt=ad8b887aded37029b96c9aa2bdcd7b8c241e55bf2ccbe8195814f09bacdf33d7b3df4231e6a2976e2896971a111772a29069564e348ece39457cfe9df1bea0f2; sid_guard=f06532c0daf9065311dee00910a2adbf%7C1791613915%7C5184000%7CWed%2C+09-Dec-2026+06%3A31%3A55+GMT; uid_tt=5251358f46677c50d4e1f094729162ccd528eb949be5f2b4d2bf8dacb6edcaae; uid_tt_ss=5251358f46677c50d4e1f094729162ccd528eb949be5f2b4d2bf8dacb6edcaae; sid_tt=f06532c0daf9065311dee00910a2adbf; sessionid=f06532c0daf9065311dee00910a2adbf; sessionid_ss=f06532c0daf9065311dee00910a2adbf;`,
             `🎉 CAPCUT PRO FULL SUCCESS\n\n📧 Email: ambur18a05b@s7.barconic.org\n🔑 Password: Cc9!uzpYY3QHR&\n👤 User ID: 7694923099019428884\n⭐ Status: PRO AKTIF (7 Hari Trial)\n🍪 Cookie String:\npassport_csrf_token=79baa5c8e926a7261c3967e944db181b; passport_csrf_token_default=79baa5c8e926a7261c3967e944db181b; reg-store-region=; store-idc=alisg; msToken=2Y4a7CD8DmNeQBQ3B8LJzrCCkcLANkxQuaZspsW00JQmtBdh0wPGrQJe-uFUfDnthIH5qojtAE8CQi1wLVmPv5Kh8NYKJIBpSfGs9PAmU9J1; x_logid=20261010143158BCB4141A88F17CE7B3B7; odin_tt=77b305534f910c50440d72c688305555d11ae5a52a387e761b5ed574287721df88d5b262ff43b202c695d220021e87af5b97ad9a2a7c127bb6d97a9df14ae7b5; sid_guard=0d6195f9b52670a31f80711f6e10aec3%7C1791613919%7C5184000%7CWed%2C+09-Dec-2026+06%3A31%3A59+GMT; uid_tt=26aca6bf05d23874ffcf709a2c581563fff85a09fc655147c02b0d027ecf6335; uid_tt_ss=26aca6bf05d23874ffcf709a2c581563fff85a09fc655147c02b0d027ecf6335; sid_tt=0d6195f9b52670a31f80711f6e10aec3; sessionid=0d6195f9b52670a31f80711f6e10aec3; sessionid_ss=0d6195f9b52670a31f80711f6e10aec3;`,
@@ -1383,4 +1874,4 @@
         }
     </script>
 </body>
-</html>
+</html>e
