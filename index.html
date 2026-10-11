@@ -149,26 +149,32 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <!-- Profil Developer Button -->
+                    <button onclick="openDevModal()" class="flex items-center space-x-1.5 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 hover:from-indigo-500/30 hover:to-purple-500/30 text-indigo-600 dark:text-indigo-300 px-3 py-2 rounded-xl text-xs font-semibold transition-all border border-indigo-500/30 shadow-sm">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <span class="hidden sm:inline">Profil Developer</span>
+                    </button>
+
                     <!-- My Support Button -->
-                    <button onclick="openSupportModal()" class="flex items-center space-x-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-600 dark:text-amber-400 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border border-amber-500/30 shadow-sm">
+                    <button onclick="openSupportModal()" class="flex items-center space-x-1.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 text-amber-600 dark:text-amber-400 px-3 py-2 rounded-xl text-xs font-semibold transition-all border border-amber-500/30 shadow-sm">
                         <i class="fa-solid fa-hands-holding-child"></i>
-                        <span>My Support</span>
+                        <span class="hidden sm:inline">My Support</span>
                     </button>
 
                     <!-- Theme Switch Button -->
-                    <button onclick="toggleTheme()" class="flex items-center space-x-1.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border border-slate-300 dark:border-slate-700 shadow-sm">
+                    <button onclick="toggleTheme()" class="flex items-center space-x-1.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-xl text-xs font-semibold transition-all border border-slate-300 dark:border-slate-700 shadow-sm">
                         <i id="themeIcon" class="fa-solid fa-sun text-amber-500"></i>
-                        <span id="themeText">Terang</span>
+                        <span id="themeText" class="hidden sm:inline">Terang</span>
                     </button>
 
-                    <div class="hidden sm:flex items-center space-x-2 bg-slate-200/80 dark:bg-slate-800/80 px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300">
+                    <div class="hidden lg:flex items-center space-x-2 bg-slate-200/80 dark:bg-slate-800/80 px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300">
                         <i class="fa-solid fa-circle-user text-indigo-600 dark:text-indigo-400"></i>
                         <span id="displayUsername">User</span>
                     </div>
-                    <button onclick="handleLogout()" class="flex items-center space-x-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border border-rose-500/20 shadow-sm">
+                    <button onclick="handleLogout()" class="flex items-center space-x-1.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 px-3 py-2 rounded-xl text-xs font-semibold transition-all border border-rose-500/20 shadow-sm">
                         <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>Keluar</span>
+                        <span class="hidden sm:inline">Keluar</span>
                     </button>
                 </div>
             </div>
@@ -393,6 +399,97 @@
                             <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- MODAL PROFIL DEVELOPER -->
+            <div id="devModal" class="fixed inset-0 z-50 bg-slate-900/60 dark:bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-4">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-lg w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center text-lg border border-indigo-500/20">
+                                <i class="fa-solid fa-user-gear"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">Profil Developer</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Pengembang Resmi Apps Premium Free</p>
+                            </div>
+                        </div>
+                        <button onclick="closeDevModal()" class="w-9 h-9 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-xl flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Gambar Tampilan Developer (Bisa Diklik & Dengan Gelembung "This Is Developer") -->
+                    <div class="relative mb-6 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-950 shadow-lg group">
+                        <a href="https://files.catbox.moe/2y8she.jpg" target="_blank" title="Klik untuk memperbesar foto" class="block relative cursor-zoom-in">
+                            <img src="https://files.catbox.moe/2y8she.jpg" alt="Foto Profil Developer" class="w-full max-h-[350px] object-contain mx-auto rounded-xl transition-transform duration-300 group-hover:scale-102">
+                            
+                            <!-- Gelembung / Thought Bubble "This Is Developer" -->
+                            <div class="absolute top-12 left-1/2 -translate-x-1/2 z-10 bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white px-5 py-2.5 rounded-full shadow-2xl border border-indigo-500/30 font-bold text-xs sm:text-sm tracking-wide flex items-center space-x-2 animate-bounce">
+                                <i class="fa-solid fa-comment-dots text-indigo-500"></i>
+                                <span>This Is Developer</span>
+                            </div>
+
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-3 text-white text-[11px] font-medium backdrop-blur-[1px]">
+                                <i class="fa-solid fa-magnifying-glass-plus mr-1.5"></i> Klik foto untuk memperbesar
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Detail Pengembang & Kontak -->
+                    <div class="space-y-3 mb-6">
+                        <div class="text-center mb-4">
+                            <h4 class="text-base font-bold text-slate-900 dark:text-white">Raffi (@Raffioffci5)</h4>
+                            <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">Founder & Web Developer</p>
+                        </div>
+
+                        <!-- Link Kontak WhatsApp -->
+                        <a href="https://wa.me/6285746154778" target="_blank" class="flex items-center justify-between bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 p-3.5 rounded-2xl border border-emerald-500/20 transition-all group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 bg-emerald-500 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-emerald-500/20">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-bold">WhatsApp Developer</span>
+                                    <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">+62 857-4615-4778</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+
+                        <!-- Link Kontak Telegram -->
+                        <a href="https://t.me/Raffioffci5" target="_blank" class="flex items-center justify-between bg-sky-500/10 hover:bg-sky-500/20 text-sky-600 dark:text-sky-400 p-3.5 rounded-2xl border border-sky-500/20 transition-all group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 bg-sky-500 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-sky-500/20">
+                                    <i class="fa-brands fa-telegram"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-bold">Telegram Developer</span>
+                                    <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">t.me/Raffioffci5</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+
+                        <!-- Link Kontak Instagram -->
+                        <a href="https://instagram.com/Raffi__v2" target="_blank" class="flex items-center justify-between bg-pink-500/10 hover:bg-pink-500/20 text-pink-600 dark:text-pink-400 p-3.5 rounded-2xl border border-pink-500/20 transition-all group">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white rounded-xl flex items-center justify-center text-lg shadow-md shadow-pink-500/20">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-bold">Instagram Developer</span>
+                                    <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">@Raffi__v2</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+
+                    <button onclick="closeDevModal()" class="w-full py-3 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                        Tutup
+                    </button>
                 </div>
             </div>
 
@@ -799,7 +896,7 @@
                 </div>
             </div>
 
-            <!-- Gemini Plus 12 Bulan Modal (Dengan Foto Jelas & Bisa Diklik) -->
+            <!-- Gemini Plus 12 Bulan Modal -->
             <div id="geminiModal" class="fixed inset-0 z-50 bg-slate-900/50 dark:bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
                 <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 max-w-2xl w-full p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto text-slate-800 dark:text-slate-100 transition-colors">
                     <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-6">
@@ -1517,6 +1614,16 @@
             document.getElementById('supportModal').classList.add('hidden');
         }
 
+        function openDevModal() {
+            document.getElementById('devModal').classList.remove('hidden');
+            document.getElementById('devModal').classList.add('flex');
+        }
+
+        function closeDevModal() {
+            document.getElementById('devModal').classList.remove('flex');
+            document.getElementById('devModal').classList.add('hidden');
+        }
+
         function generateDeviceId() {
             let result = '';
             const characters = '0123456789abcdef';
@@ -1874,4 +1981,4 @@
         }
     </script>
 </body>
-</html>e
+</html>
